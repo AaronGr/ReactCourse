@@ -2,38 +2,41 @@ import React, { useState } from "react";
 import Card from "../UI/Card/Card";
 import ExpensesFilter from "./ExpenseFilter/ExpenseFilter";
 import ExpenseItem from "./ExpenseItem/ExpenseItem";
+import ExpensesList from "./ExpensesList/ExpensesList";
 
 import './Expenses.css'
+import ExpensesChart from "./ExpensesChart/ExpensesChart";
 
 const Expenses = (props) => {
-    const expenses = props.expenses;
     const [filterYear, setFilterYear] = useState('2022');
 
     const onFilterYearChange = (year) => {
         setFilterYear(year);
     };
 
+    const filteredExpenses  = props.expenses.filter(expense => {
+        return expense.date.getFullYear().toString() === filterYear;
+    });
+
+    let expensesContent = <p>No expenses found.</p>;
+
+    if (filteredExpenses.length > 0) {
+        expensesContent = filteredExpenses.map((expense) => (
+            <ExpenseItem
+                key={expense.id}
+                title={expense.title}
+                amount={expense.amount}
+                date={expense.date}
+            />
+         ));
+    }
+
     return (
-        <div>
-            <Card className="expenses">
-                <ExpensesFilter filterYear={filterYear} onYearChange={onFilterYearChange} />
-                <ExpenseItem
-                    title={expenses[0].title}
-                    amount={expenses[0].amount}
-                    date={expenses[0].date}
-                />
-                <ExpenseItem
-                    title={expenses[1].title}
-                    amount={expenses[1].amount}
-                    date={expenses[1].date}
-                />
-                <ExpenseItem
-                    title={expenses[2].title}
-                    amount={expenses[2].amount}
-                    date={expenses[2].date}
-                />
-            </Card>
-        </div>
+         <Card className="expenses">
+            <ExpensesFilter filterYear={filterYear} onYearChange={onFilterYearChange} />
+            <ExpensesChart expenses={filteredExpenses} />
+            <ExpensesList items={filteredExpenses} />
+        </Card>
     )
 }
 
