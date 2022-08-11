@@ -1,0 +1,23 @@
+.controls {
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.control {
+    display: flex;
+    flex-flow: column wrap;
+    margin: 0 3%;
+}
+
+.action {
+    display: flex;
+    margin: 0 3%;
+    margin-top: 3%;
+}
+
+.action > button {
+    background-color: blueviolet;
+    color: white;
+    width: 5rem;
+    height: 2rem;
+}
