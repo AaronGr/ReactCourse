@@ -1,4 +1,5 @@
 import React from "react";
+import Toast from "./components/UI/Toast/Toast";
 import Users from "./components/Users/Users";
 
 function App() {
@@ -21,7 +22,9 @@ function App() {
   ]
 
   return (
-    <Users users={DUMMY_USERS} />
+    <>
+      <Users users={DUMMY_USERS} />
+    </>
   );
 }
 
