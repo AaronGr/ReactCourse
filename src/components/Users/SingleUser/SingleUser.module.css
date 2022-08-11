@@ -1,0 +1,19 @@
+li {
+    list-style-type: none;
+    list-style-position: inside;
+}
+
+.user {
+    display: flex;
+    border: .01rem solid black;
+    margin-left: -5%;
+    margin-right: 4%;
+    margin-bottom: 2%;
+}
+
+.user > p {
+    display: inline;
+    padding: 1%;
+    margin: 0%;
+}
+
