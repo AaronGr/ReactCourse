@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ReactDOM from 'react-dom';
 
 import styles from './Toast.module.css';
 
@@ -28,4 +29,13 @@ const Toast = props => {
     
 };
 
-export default Toast;
+const ErrorModal = props => {
+    return (
+        <>
+            {ReactDOM.createPortal(<Toast title={props.title} content={props.content} toggle={props.toggle} />,
+                document.getElementById('toast-root'))  }
+        </>
+    )
+};
+
+export default ErrorModal;

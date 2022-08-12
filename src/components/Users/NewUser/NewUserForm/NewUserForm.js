@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Toast from '../../../UI/Toast/Toast';
+import ErrorModal from '../../../UI/Toast/Toast';
 
 import styles from './NewUserForm.module.css';
 
@@ -40,7 +40,7 @@ const NewUserForm = props => {
 
     return (
         <>  {submissionIsInvalid ?
-            <Toast title={'Invalid Input'} content='Please enter a valid name and age (non-empty values).' toggle={toggleToast} />
+            <ErrorModal title={'Invalid Input'} content='Please enter a valid name and age (non-empty values).' toggle={toggleToast} />
             : null
         }
             <form onSubmit={formSubmitHandler}>
