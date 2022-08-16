@@ -1,0 +1,12 @@
+.meals {
+    display: flex;
+    flex-direction: column;
+    z-index: 5;
+    color: black;
+    width: 60%;
+    margin: 0 auto;
+}
+
+.meals ul {
+    list-style: none;
+}

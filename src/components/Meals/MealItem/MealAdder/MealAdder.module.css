@@ -1,0 +1,33 @@
+.controls {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    align-content: space-around;
+    margin-right: 20%;
+}
+
+.controls label {
+    padding-right: 5%;
+    font-size: small;
+    font-weight: bolder;
+}
+
+.controls input {
+    width: 25%;
+}
+
+.action {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    margin-top: 2%;
+    margin-right: 20%
+}
+
+.action button {
+    width: 50%;
+    border-radius: 12px;
+    background-color: brown;
+    color: white;
+    border-width: .025rem;
+}
