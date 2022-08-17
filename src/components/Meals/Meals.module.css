@@ -1,7 +1,7 @@
 .meals {
     display: flex;
     flex-direction: column;
-    z-index: 5;
+    z-index: 1;
     color: black;
     width: 60%;
     margin: 0 auto;

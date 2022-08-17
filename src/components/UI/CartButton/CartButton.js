@@ -5,7 +5,10 @@ import styles from './CartButton.module.css';
 
 const CartButton = props => {
     return (
-        <button className={styles['cart-btn']} type='button'>
+        <button 
+            className={styles['cart-btn']} 
+            type='button'
+        >
             <span className={styles['cart-icon']}>
                 <CartIcon  />
             </span>

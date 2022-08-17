@@ -1,0 +1,35 @@
+.total {
+    display: flex;
+    flex-direction: column;
+}
+
+.total-amount {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.total-btns {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-items: right;
+}
+
+.total-btns button {
+    margin: 1%;
+    border-radius: 15px;
+    width: 15%;
+    height: 2rem;
+}
+
+#order-btn {
+    background-color: brown;
+    color: white;
+    border: 0;
+}
+
+#cancel-btn {
+    background-color: white;
+    color: brown;
+    border-color: brown;
+}

@@ -1,3 +1,4 @@
+import CartModal from "./components/Cart/Cart";
 import Header from "./components/Layout/Header/Header";
 import Meals from "./components/Meals/Meals";
 
