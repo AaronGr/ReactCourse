@@ -20,7 +20,7 @@ const Cart = (props) => {
     
 
     const meals = cartCtx.cart.map(item => {
-        return <CartItem key={item.id} meal={item} />
+        return <CartItem key={item.id} meal={item} count={cartCtx.cartMap.get(item.id)} />
     });
 
     return (

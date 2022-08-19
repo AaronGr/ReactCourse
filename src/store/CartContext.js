@@ -4,6 +4,7 @@ const CartContext = React.createContext({
     isCartOpen: false,
     cartAmount: 0,
     cart: [],
+    cartMap: new Map(),
     changeCartAmount: (amount) => {},
     addMeal: (meal, amount) => {},
     toggleCart: () => {}
@@ -76,6 +77,7 @@ export const CartContextProvider = props => {
                 isCartOpen: isCartOpen,
                 cartAmount: cartState.cartAmount,
                 cart: cartState.cart,
+                cartMap: cartState.cartMap,
                 changeCartAmount: changeCartAmountHandler,
                 addMeal: addMealHandler,
                 toggleCart: toggleCartHandler
