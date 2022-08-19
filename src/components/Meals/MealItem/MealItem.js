@@ -9,11 +9,11 @@ const MealItem = props => {
         <li>
             <div className={styles['meal-item']}>
                 <MealDescription
-                    name={props.name}
-                    description={props.description}
-                    price={props.price}
+                    name={props.meal.name}
+                    description={props.meal.description}
+                    price={props.meal.price}
                 />
-                <MealAdder />
+                <MealAdder meal={props.meal} />
             </div>
             <hr />
         </li>

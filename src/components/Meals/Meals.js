@@ -52,9 +52,7 @@ const Meals = props => {
                         return (
                             <MealItem
                                 key={item.id}
-                                name={item.name}
-                                description={item.description}
-                                price={item.price}
+                                meal={item}
                             />
                         )
                     })}

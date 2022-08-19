@@ -1,16 +1,23 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import CartContext from '../../../../store/CartContext';
 
 import styles from './MealAdder.module.css';
 
 const MealAdder = (props) => { 
+    const cartCtx = useContext(CartContext);
     const [amount, setAmount] = useState('1');
 
     const amountChangeHandler = (event) => {
         setAmount(event.target.value);
     };
 
+    const addMealHandler = (event) => {
+        event.preventDefault();
+        cartCtx.addMeal(props.meal, amount);
+    };
+
     return (
-        <form>
+        <form onSubmit={addMealHandler}>
             <div className={styles.controls}>
                 <label htmlFor='item-amount'>Amount</label>
                 <input 
@@ -24,7 +31,7 @@ const MealAdder = (props) => {
                 />
             </div>
             <div className={styles.action}>
-                <button type='submit'>+Add</button>
+                <button type='submit' >+Add</button>
             </div>
         </form>
     )
