@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from 'react';
+import React, {useContext} from 'react';
 import ReactDOM from 'react-dom';
 
 import Card from '../UI/Card/Card';
@@ -8,26 +8,23 @@ import styles from './Cart.module.css';
 import CartItem from './CartItem/CartItem';
 import CartContext from '../../store/CartContext';
 
-const Cart = (props) => { 
-
-    const [totalPrice, setTotalPrice] = useState(0.0.toFixed(2));
-
+const Cart = (props) => {
     const cartCtx = useContext(CartContext);
 
-    const cartToggleHandler = () => {
-        cartCtx.toggleCart();
-    };
-    
-
     const meals = cartCtx.cart.map(item => {
-        return <CartItem key={item.id} meal={item} count={cartCtx.cartMap.get(item.id).amount} />
+        return <CartItem 
+                    key={item.id} 
+                    meal={item} 
+                    count={cartCtx.cartMap.get(item.id).amount}
+                    addOneMeal={() => cartCtx.addMeal(item, '1')}
+                />
     });
 
     return (
         <>
             <div 
                 className={styles.backdrop}
-                onClick={cartToggleHandler} />
+                onClick={cartCtx.toggleCart} />
             <Card className={styles.cart}>
                 {meals}
                 <Total totalPrice={cartCtx.totalPrice} />

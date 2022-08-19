@@ -13,8 +13,8 @@ const CartItem = (props) => {
                     <span>x{props.count}</span>
                 </div>
                 <div className={styles['cart-btns']}>
-                    <button type='button'>-</button>
-                    <button type='button'>+</button>
+                    <button type='button' onClick={props.removeOneMeal}>-</button>
+                    <button type='button' onClick={props.addOneMeal}>+</button>
                 </div>
             </div>
             <hr className={styles.divider}/>
