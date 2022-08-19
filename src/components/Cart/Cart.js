@@ -17,6 +17,7 @@ const Cart = (props) => {
                     meal={item} 
                     count={cartCtx.cartMap.get(item.id).amount}
                     addOneMeal={() => cartCtx.addMeal(item, '1')}
+                    removeOneMeal={() => cartCtx.removeMeal(item.id)}
                 />
     });
 

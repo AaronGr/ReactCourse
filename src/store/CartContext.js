@@ -11,13 +11,15 @@ const CartContext = React.createContext({
 });
 
 const cartReducer = (state, action) => {
+    const cart = [...state.cart];
+    const cartMap = new Map(state.cartMap);
+    let totalPrice = 0;
+
     switch (action.type) {
         case 'ADD_MEAL':
             // Only add meal to cart array and if it doesn't exist
             // If meal exists in the array then it is in the map, so update amount
-            const cart = [...state.cart];
-            const cartMap = new Map(state.cartMap);
-            let totalPrice = state.totalPrice;
+            
             if (!cart.find(meal => meal.id === action.meal.id)) {
                 cart.push(action.meal);
                 cartMap.set(action.meal.id, {amount: action.amount, price: action.meal.price} );
@@ -25,10 +27,14 @@ const cartReducer = (state, action) => {
                 cartMap.set(action.meal.id, {amount: action.amount + cartMap.get(action.meal.id).amount, price: action.meal.price});
             }
 
+            
+
             // Get total price from amount and price
             cartMap.forEach((mealInfo) => {
-                totalPrice += mealInfo.price * mealInfo.amount;
+                console.log(mealInfo);
+                totalPrice = (mealInfo.price * mealInfo.amount) + totalPrice;
             });
+
 
             return {
                     cart: cart, 
@@ -36,7 +42,27 @@ const cartReducer = (state, action) => {
                     cartMap: new Map(cartMap),
                     totalPrice: totalPrice
                 }
-            break;
+        case 'REMOVE_ONE_MEAL': 
+            totalPrice = state.totalPrice;
+            if (cartMap.has(action.id)) {
+                totalPrice -= cartMap.get(action.id).price;
+                if (cartMap.get(action.id).amount > 1) {
+                    --cartMap.get(action.id).amount;
+                } else if (cartMap.get(action.id).amount === 1) {
+                    const indexToRemove = cart.find(meal => meal.id === action.id);
+                    cart.splice(indexToRemove, 1);
+                    cartMap.delete(action.id);
+                }
+            }
+
+            return {
+                ...state,
+                cartMap: new Map(cartMap),
+                cart: cart,
+                totalPrice: totalPrice,
+                cartAmount: --state.cartAmount
+            }
+
     }
 };
 
@@ -79,6 +105,10 @@ export const CartContextProvider = props => {
         dispatchCart({type: 'ADD_MEAL', meal: meal, amount: parseInt(amount)});
     };
 
+    const removeOneMealHandler = (mealId) => {
+        dispatchCart({type: 'REMOVE_ONE_MEAL', id: mealId});
+    }
+
     return (
         <CartContext.Provider 
             value={{
@@ -89,6 +119,7 @@ export const CartContextProvider = props => {
                 totalPrice: cartState.totalPrice.toFixed(2),
                 changeCartAmount: changeCartAmountHandler,
                 addMeal: addMealHandler,
+                removeMeal: removeOneMealHandler,
                 toggleCart: toggleCartHandler
             }}
         >
