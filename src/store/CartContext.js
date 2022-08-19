@@ -45,18 +45,18 @@ export const CartContextProvider = props => {
     });
 
 
-    const DUMMY_CART_DATA = [
-        {
-            id: 'm1',
-            name: 'Sushi',
-            price: 22.99
-        },
-        {
-            id: 'm3',
-            name: 'Schnitzel',
-            price: 16.50
-        }
-    ]
+    // const DUMMY_CART_DATA = [
+    //     {
+    //         id: 'm1',
+    //         name: 'Sushi',
+    //         price: 22.99
+    //     },
+    //     {
+    //         id: 'm3',
+    //         name: 'Schnitzel',
+    //         price: 16.50
+    //     }
+    // ]
 
     const changeCartAmountHandler = amount => {
         // setCartAmount(amount);
@@ -74,7 +74,7 @@ export const CartContextProvider = props => {
         <CartContext.Provider 
             value={{
                 isCartOpen: isCartOpen,
-                cartAmount: cartState.amount,
+                cartAmount: cartState.cartAmount,
                 cart: cartState.cart,
                 changeCartAmount: changeCartAmountHandler,
                 addMeal: addMealHandler,
