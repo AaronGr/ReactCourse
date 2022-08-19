@@ -17,17 +17,24 @@ const cartReducer = (state, action) => {
             // If meal exists in the array then it is in the map, so update amount
             const cart = [...state.cart];
             const cartMap = new Map(state.cartMap);
+            let totalPrice = state.totalPrice;
             if (!cart.find(meal => meal.id === action.meal.id)) {
                 cart.push(action.meal);
-                cartMap.set(action.meal.id, action.amount);
+                cartMap.set(action.meal.id, {amount: action.amount, price: action.meal.price} );
             } else {
-                cartMap.set(action.meal.id, action.amount + cartMap.get(action.meal.id));
+                cartMap.set(action.meal.id, {amount: action.amount + cartMap.get(action.meal.id).amount, price: action.meal.price});
             }
+
+            // Get total price from amount and price
+            cartMap.forEach((mealInfo) => {
+                totalPrice += mealInfo.price * mealInfo.amount;
+            });
 
             return {
                     cart: cart, 
                     cartAmount: state.cartAmount + action.amount,
-                    cartMap: new Map(cartMap)
+                    cartMap: new Map(cartMap),
+                    totalPrice: totalPrice
                 }
             break;
     }
@@ -43,6 +50,7 @@ export const CartContextProvider = props => {
         cart: [],
         cartMap: new Map(),
         cartAmount: 0,
+        totalPrice: 0.00
     });
 
 
@@ -78,6 +86,7 @@ export const CartContextProvider = props => {
                 cartAmount: cartState.cartAmount,
                 cart: cartState.cart,
                 cartMap: cartState.cartMap,
+                totalPrice: cartState.totalPrice.toFixed(2),
                 changeCartAmount: changeCartAmountHandler,
                 addMeal: addMealHandler,
                 toggleCart: toggleCartHandler

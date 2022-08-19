@@ -20,7 +20,7 @@ const Cart = (props) => {
     
 
     const meals = cartCtx.cart.map(item => {
-        return <CartItem key={item.id} meal={item} count={cartCtx.cartMap.get(item.id)} />
+        return <CartItem key={item.id} meal={item} count={cartCtx.cartMap.get(item.id).amount} />
     });
 
     return (
@@ -30,7 +30,7 @@ const Cart = (props) => {
                 onClick={cartToggleHandler} />
             <Card className={styles.cart}>
                 {meals}
-                <Total totalPrice={totalPrice} />
+                <Total totalPrice={cartCtx.totalPrice} />
             </Card>
         </>
     );
