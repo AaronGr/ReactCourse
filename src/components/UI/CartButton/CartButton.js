@@ -4,7 +4,7 @@ import CartIcon from '../CartIcon/CartIcon';
 
 import styles from './CartButton.module.css';
 
-const CartButton = props => {
+const CartButton = () => {
     const cartCtx = useContext(CartContext);
 
     const toggleCartHandler = () => {
@@ -24,7 +24,7 @@ const CartButton = props => {
                 Your Cart
             </span>
             <span className={styles['cart-counter']}>
-                3
+                {cartCtx.cartAmount}
             </span>
         </button>
     )

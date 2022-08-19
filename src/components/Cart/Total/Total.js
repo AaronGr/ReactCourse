@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import CartContext from '../../../store/CartContext';
 
 import styles from './Total.module.css';
 
-const Total = (props) => { 
+const Total = (props) => {
+    const cartCtx = useContext(CartContext);
+
+    const cartCancelHandler = () => {
+        cartCtx.toggleCart();
+    };
+
     return (
         <div className={styles.total}>
             <div className={styles['total-amount']}>
@@ -10,8 +17,17 @@ const Total = (props) => {
                 <h2>${props.totalPrice}</h2>
             </div>
             <div className={styles['total-btns']}>
-                <button type='button' id={styles['order-btn']}>Order</button>
-                <button type='button' id={styles['cancel-btn']}>Cancel</button>
+                <button 
+                    type='button' 
+                    id={styles['order-btn']}>
+                    Order
+                </button>
+                <button 
+                    type='button' 
+                    id={styles['cancel-btn']}
+                    onClick={cartCancelHandler}>
+                    Cancel
+                </button>
             </div>
         </div>
     )
