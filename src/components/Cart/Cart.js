@@ -15,10 +15,10 @@ const Cart = (props) => {
         return <CartItem 
                     key={item.id} 
                     meal={item} 
-                    count={cartCtx.cartMap.get(item.id).amount}
+                    count={item.amount}
                     addOneMeal={() => cartCtx.addMeal(item, '1')}
-                    removeOneMeal={() => cartCtx.removeMeal(item.id)}
-                />
+                    removeOneMeal={() => cartCtx.removeMeal(item)}
+            />
     });
 
     return (

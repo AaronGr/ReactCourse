@@ -14,7 +14,7 @@ const Total = (props) => {
         <div className={styles.total}>
             <div className={styles['total-amount']}>
                 <h2>Total Amount</h2>
-                <h2>${props.totalPrice}</h2>
+                <h2>${Math.abs(props.totalPrice).toFixed(2)}</h2>
             </div>
             <div className={styles['total-btns']}>
                 <button 
