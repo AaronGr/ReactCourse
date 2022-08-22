@@ -9,7 +9,7 @@ const CartItem = (props) => {
             <div className={styles['cart-item']}>
                 <div className={styles['meal']}>
                     <h3>{props.meal.name}</h3>
-                    <p>${props.meal.price}</p>
+                    <p>${props.meal.price.toFixed(2)}</p>
                     <span>x{props.count}</span>
                 </div>
                 <div className={styles['cart-btns']}>

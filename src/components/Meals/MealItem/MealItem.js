@@ -11,7 +11,7 @@ const MealItem = props => {
                 <MealDescription
                     name={props.meal.name}
                     description={props.meal.description}
-                    price={props.meal.price}
+                    price={props.meal.price.toFixed(2)}
                 />
                 <MealAdder meal={props.meal} />
             </div>
