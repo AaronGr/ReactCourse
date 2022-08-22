@@ -17,12 +17,16 @@ const Total = (props) => {
                 <h2>${Math.abs(props.totalPrice).toFixed(2)}</h2>
             </div>
             <div className={styles['total-btns']}>
+            {
+                cartCtx.cart.length !== 0 
+                    &&
                 <button 
                     type='button' 
                     id={styles['order-btn']}
                     onClick={cartCtx.orderMeals}>
                     Order
                 </button>
+            }
                 <button 
                     type='button' 
                     id={styles['cancel-btn']}
