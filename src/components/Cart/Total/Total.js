@@ -19,7 +19,8 @@ const Total = (props) => {
             <div className={styles['total-btns']}>
                 <button 
                     type='button' 
-                    id={styles['order-btn']}>
+                    id={styles['order-btn']}
+                    onClick={cartCtx.orderMeals}>
                     Order
                 </button>
                 <button 

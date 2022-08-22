@@ -4,12 +4,23 @@ const CartContext = React.createContext({
     isCartOpen: false,
     cartAmount: 0,
     cart: [],
-    changeCartAmount: (amount) => {},
     addMeal: (meal, amount) => {},
+    removeMeal: (meal) => {},
+    orderMeals: () => {},
     toggleCart: () => {}
 });
 
+const defaultCartState = {
+    cart: [],
+    cartAmount: 0,
+    totalPrice: 0
+}
+
 const cartReducer = (state, action) => {
+    if (!action) {
+        return defaultCartState;
+    }
+    
     const cart = [...state.cart];
     const foundMeal = cart.find(meal => meal.id === action.meal.id);
     let totalPrice = 0;
@@ -52,6 +63,8 @@ const cartReducer = (state, action) => {
                 totalPrice: totalPrice,
                 cartAmount: --state.cartAmount
             }
+        default:
+            return defaultCartState;
 
     }
 };
@@ -75,7 +88,11 @@ export const CartContextProvider = props => {
 
     const removeOneMealHandler = (meal) => {
         dispatchCart({type: 'REMOVE_ONE_MEAL', meal: meal});
-    }
+    };
+
+    const orderMealsHandler = () => {
+        dispatchCart()
+    };
 
     return (
         <CartContext.Provider 
@@ -86,6 +103,7 @@ export const CartContextProvider = props => {
                 totalPrice: cartState.totalPrice.toFixed(2),
                 addMeal: addMealHandler,
                 removeMeal: removeOneMealHandler,
+                orderMeals: orderMealsHandler,
                 toggleCart: toggleCartHandler
             }}
         >
