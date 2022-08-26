@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import CartContext from '../../../store/CartContext';
+import CheckoutForm from '../Checkout/CheckoutForm';
 
 import styles from './Total.module.css';
 
@@ -16,6 +17,7 @@ const Total = (props) => {
                 <h2>Total Amount</h2>
                 <h2>${Math.abs(props.totalPrice).toFixed(2)}</h2>
             </div>
+            {cartCtx.cart.length !== 0 && <CheckoutForm />}
             <div className={styles['total-btns']}>
             {
                 cartCtx.cart.length !== 0 

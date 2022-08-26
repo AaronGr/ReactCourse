@@ -1,0 +1,22 @@
+.checkout-form {
+    flex-direction: row;
+}
+
+.names {
+    margin: 5px;
+}
+
+.address {
+    margin: 5px;
+}
+
+.checkout-form label {
+    padding: 0;
+    margin-left: 1%;
+}
+
+.checkout-form input {
+  padding: 0;
+  margin-left: 1%;
+  border: 2px solid black;
+}
